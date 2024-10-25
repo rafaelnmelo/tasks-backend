@@ -11,7 +11,7 @@ module.exports = app => {
     }
 
     const strategy = new Strategy(params, (payload, done) => {
-        app.db('users'
+        app.db('users')
             .where({ id: payload.id })
             .first()
             .then(user => {
@@ -22,7 +22,6 @@ module.exports = app => {
                 }
             })
             .catch(err => done(err, false))
-        )
     })
 
     passport.use(strategy)
