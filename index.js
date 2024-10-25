@@ -10,6 +10,8 @@ const app = express()
 //centralizar informações dentro de app pelos multiplos módulos(arquivos)
 consign()
     .then('./config/middlewares.js')
+    .then('./api')
+    .then('./config/routes.js')
     .into(app)
 
 //acessar o knex por todo os módulos
