@@ -1,26 +1,19 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const db = require('./config/db') //*knex
+const consign = require('consign')
 
 const app = express()
 //forma alternativa importando e instanciando ao mesmo tempo
 // const app = require('express')()
 
-app.use(bodyParser.json())
+//centralizar informações dentro de app pelos multiplos módulos(arquivos)
+consign()
+    .then('./config/middlewares.js')
+    .into(app)
 
-app.get('/', (req, res, next) => {
-    console.log('Função 0')
-    next()
-})
-
-app.get('/', (req, res, next) => {
-    console.log('Função 1')
-    res.status(200).send('<h1>Meu Backend!</h1>')
-    next()
-})
-
-app.get('/', (req, res) => {
-    console.log('Função 2')
-})
+//acessar o knex por todo os módulos
+app.db = db
 
 app.listen(3000, () => {
     console.log('Backend executando...')
