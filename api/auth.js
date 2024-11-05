@@ -33,7 +33,7 @@ module.exports = app => {
                     })
                 })
         } else {
-            return res.status(400).send('Usuário não encontrado')
+            return res.status(400).send('Dados inválidos')
         }
     }
 
